@@ -23,24 +23,38 @@ const Index = ({ products }) => {
         });
     };
 
+    const handleLogout = (e) => {
+        e.preventDefault();
+        router.post("/logout");
+    };
+
     return (
         <>
             <Head title="Product List :D"></Head>
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h3 className="text-center text-success mt-3">
-                            Product List
+                        <h3 className="text-center mt-3">
+                            <Link href="/product">Product List</Link>
                         </h3>
                     </div>
-                    <div className="col-12 mt-2">
+                    <div className="col-12 d-flex justify-content-between">
                         <Link
                             className="btn btn-primary btn-sm my-2"
                             href="/product/create"
                         >
                             + add product
                         </Link>
-
+                        <form onSubmit={handleLogout} className="my-2">
+                            <button
+                                className="btn btn-danger btn-sm"
+                                type="submit"
+                            >
+                                logout
+                            </button>
+                        </form>
+                    </div>
+                    <div className="col-12 mt-2">
                         {flash.msg && (
                             <div
                                 className="alert alert-success alert-dismissible fade show"
